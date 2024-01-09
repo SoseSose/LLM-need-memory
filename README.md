@@ -58,7 +58,7 @@ def get_billion_param(model):
     return round(summary(model, verbose=0).total_params / billion, 2)
 ```
 
-ここ[[1](#参考)]にもおいています。
+ここ[[4](#参考)]にもおいています。
 
 - 結果  
 ![結果画像](result.png)
@@ -78,3 +78,4 @@ $必要なメモリ(GB) = 4 \times ◯$
 [1] https://discuss.huggingface.co/t/llama-7b-gpu-memory-requirement/34323/6  
 [2] https://github.com/anderskm/gputil?tab=readme-ov-file  
 [3] https://github.com/TylerYep/torchinfo  
+[4] https://github.com/SoseSose/LLM-need-memory
