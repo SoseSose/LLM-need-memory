@@ -11,10 +11,10 @@ PCで実行できるか、分からず検証してみようと
 - LLMのGPUメモリ使用量の計算方法  
 推論に必要なメモリは大まかに  FP16の1パラメータ(2バイト)に対してパラメータ数◯Bとすると  
 $必要なメモリ(GB) = 2 \times ◯$   
-となります。意外とシンプルです。 [[1](#参考)]
+となります。意外とシンプルです。 [^1]
 
 - GPUメモリ使用量の実測  
-GPUtil[[2](#参考)]を使用して次のコードで計測。
+GPUtil[2^]を使用して次のコードで計測。
 
 ```python
 import GPUtil
@@ -39,7 +39,7 @@ def get_gpu_used_memory(device_id):
 10. [Qwen-1_8B-Chat](https://huggingface.co/Qwen/Qwen-1_8B-Chat)
 
 - パラメータ数の実測
-torchinfo[[3](#参考)]を使用して、次のコードで計測。 
+torchinfo[^3]を使用して、次のコードで計測。 
 
 ```python
 from torchinfo import summary
@@ -58,7 +58,7 @@ def get_billion_param(model):
     return round(summary(model, verbose=0).total_params / billion, 2)
 ```
 
-ここ[[4](#参考)]にもおいています。
+ここ[^4]にもおいています。
 
 - 結果  
 ![結果画像](result.png)
@@ -72,10 +72,10 @@ def get_billion_param(model):
 今後、モデルのファインチューニングをしてみたいと考えています。
 モデルの全てのパラメータの再学習には  
 $必要なメモリ(GB) = 4 \times ◯$   
-が必要なよう[[3](#参考)]なので、phi-2くらいがローカルPCで使用できる最高ラインくらいになりそうですね。
+が必要なよう[^1]なので、phi-2くらいがローカルPCで使用できる最高ラインくらいになりそうですね。
 
 ## 6.参考
-[1] https://discuss.huggingface.co/t/llama-7b-gpu-memory-requirement/34323/6  
-[2] https://github.com/anderskm/gputil?tab=readme-ov-file  
-[3] https://github.com/TylerYep/torchinfo  
-[4] https://github.com/SoseSose/LLM-need-memory
+[^1]: https://discuss.huggingface.co/t/llama-7b-gpu-memory-requirement/34323/6  
+[^2]: https://github.com/anderskm/gputil?tab=readme-ov-file  
+[^3]: https://github.com/TylerYep/torchinfo  
+[^4]: https://github.com/SoseSose/LLM-need-memory
